@@ -1,4 +1,8 @@
 class PrescriptionsController < ApplicationController
+  before_action :auth_check
+  before_action :prevent
+  skip_before_action :prevent, only:[:index]
+
   def new
     @medications = Medication.all 
     @prescription = Prescription.new
@@ -9,7 +13,7 @@ class PrescriptionsController < ApplicationController
   end
 
   def create
-    @presciption = current_user.prescriptions.build(strong_params)
+    @prescription = current_user.prescriptions.build(strong_params)
     if @prescription.save
       redirect_to prescriptions_path
     else
@@ -22,13 +26,25 @@ class PrescriptionsController < ApplicationController
   end
 
   def edit
+    @medications = Medication.all 
+    @prescription = Prescription.find(params[:id])
   end
 
   def update
+    @prescription = Prescription.find(params[:id])
+    @prescription.update(strong_params)
+    redirect_to prescriptions_path
   end
 
   def destroy
   end
+
+private
+  def prevent
+    @prescription = Prescription.find_by_id(params[:id])
+    redirect_to prescriptions_path unless current_user.prescriptions.include?(@prescription)
+  end
+
 
 
   private 
