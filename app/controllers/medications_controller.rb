@@ -1,6 +1,5 @@
 class MedicationsController < ApplicationController
-  require "open-uri"
-  
+ before_action :auth_check
 def index 
   @medications = Medication.all 
 end 
