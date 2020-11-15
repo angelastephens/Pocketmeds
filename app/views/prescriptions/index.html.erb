@@ -1,0 +1,12 @@
+<h1>Current Prescriptions</h1>
+<% @prescription.each do |prescription|%>
+<%= prescription.medication.name%> <%=prescription.dosage%>  <br> Total Refills: <%=prescription.refill_amount%>
+Dispensed Date: <%= prescription.refills.last.dispensed_date if prescription.refills.last%> Refills Remaining: <%=prescription.refill_amount - prescription.refill_count%> <br> 
+There are <%= prescription.medication.users.count-1%> other users on this medication
+<%= button_to "Add New Refill", new_prescription_refill_path(prescription), method: :get %>
+<%= button_to "View Refill Details", prescription_refills_path(prescription), method: :get %>
+<%= button_to "Edit Prescription", edit_prescription_path(prescription), method: :get %>
+<%end%>
+
+
+
