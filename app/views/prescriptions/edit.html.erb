@@ -1,0 +1,14 @@
+<h1>Prescriptions#edit</h1>
+<p>Edit a Prescription</p>
+
+<%= form_for @prescription do |f| %>
+  <%= f.label :medication_id, 'Please select a medication' %> <br>
+  <%= f.select :medication_id, options_from_collection_for_select(@medications, :id, :name, @prescription.medication_id) %> <br>
+  <%= f.label :dosage %> <br>
+  <%= f.text_field :dosage %> <br>
+  <%= f.label :quantity %> <br>
+  <%= f.text_field :quantity %> <br>
+  <%= f.label :refill_amount, 'Refill Amount' %> <br>
+  <%= f.text_field :refill_amount %> <br>
+  <%= f.submit 'Save Edit'%>
+<% end %>
