@@ -5,4 +5,6 @@ class Prescription < ApplicationRecord
     validates :refill_amount, presence: true
     validates :dosage, presence: true
     validates :quantity, presence: true 
+
+   
 end
