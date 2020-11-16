@@ -1,7 +1,7 @@
 class PrescriptionsController < ApplicationController
   before_action :auth_check
   before_action :prevent
-  skip_before_action :prevent, only:[:index]
+  skip_before_action :prevent, only:[:index,:new,:create]
 
   def new
     @medications = Medication.all 
@@ -17,7 +17,8 @@ class PrescriptionsController < ApplicationController
     if @prescription.save
       redirect_to prescriptions_path
     else
-      render :new 
+      flash[:error] = "Missing prescription fields. Please try again."
+      redirect_to  new_prescription_path 
     end
 
   end
@@ -32,8 +33,13 @@ class PrescriptionsController < ApplicationController
 
   def update
     @prescription = Prescription.find(params[:id])
-    @prescription.update(strong_params)
-    redirect_to prescriptions_path
+    @prescription.assign_attributes(strong_params)
+    if @prescription.save
+      redirect_to prescriptions_path
+    else 
+      flash[:error] = "Missing prescription fields. Please try again."
+      redirect_to edit_prescription_path(@prescription)
+    end
   end
 
   def destroy
