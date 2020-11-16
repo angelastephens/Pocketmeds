@@ -1,0 +1,68 @@
+<h1>Pocketmeds</h1>
+<p>Welcome to Pocketmeds. </p>
+<p>The handy app that lets you see all your medications in one place.</p>
+
+<%= link_to image_tag("btn_google_signin_dark_normal_web.png"), "/auth/google_oauth2", method: :get %>
+
+<%=flash[:error]%>
+
+<div class="accordion" id="accordionExample">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h2 class="mb-0">
+        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Sign In
+        </button>
+      </h2>
+    </div>
+
+    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+    
+
+    <%= form_tag sessions_create_path() do %>
+    <label>Email Address :</label><br>
+    <%= text_field_tag :email_address %><br>
+     
+    <label>Password:</label><br>
+    <%= password_field_tag :password  %><br>
+     
+    <%= submit_tag "Log in" %>
+    <% end %>      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h2 class="mb-0">
+        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Create an Account
+        </button>
+      </h2>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+      <div class="card-body">
+
+
+        <%= form_for(@user) do |f| %>
+        <label>Email Address:</label><br>
+        <%= f.text_field :email_address%><br>
+
+        <label>First Name:</label><br>
+        <%= f.text_field :first_name%><br>
+
+        <label>Last Name:</label><br>
+        <%= f.text_field :last_name%><br>
+
+        <label>Phone Number:</label><br>
+        <%= f.text_field :phone_number%><br>
+
+         
+        <label>Password:</label><br>
+        <%= f.password_field :password %><br>
+         
+        <%= f.submit %>
+<% end %>      </div>
+    </div>
+  </div>
+</div>
+
