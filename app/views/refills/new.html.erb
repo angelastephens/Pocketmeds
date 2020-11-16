@@ -1,0 +1,16 @@
+<h1>Refills</h1>
+<p>Please enter refill information for <%=@prescription.medication.name%></p>
+
+<%=flash[:error]%>
+
+<%= form_for ([@prescription, @refill]) do |f| %>
+  <label>Dispensed Date:</label><br>
+  <%= f.date_field :dispensed_date, placeholder: "dd-mm-yyyy"  %><br> 
+  <label>Expiration Date:</label><br>
+  <%= f.date_field :expiration_date,  placeholder: "dd-mm-yyyy" %><br>
+  
+  <%=f.submit "Log Refill" %>
+<% end %>
+
+
+
