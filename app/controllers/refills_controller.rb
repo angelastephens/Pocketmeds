@@ -14,7 +14,7 @@ class RefillsController < ApplicationController
     if @refill.save
       redirect_to refills_path
     else
-      flash[:error] = "No more refills remain"
+      flash[:error] = "Missing field or you may not have any more refills for this medication."
       redirect_to new_prescription_refill_path(@prescription) 
     end
   end
