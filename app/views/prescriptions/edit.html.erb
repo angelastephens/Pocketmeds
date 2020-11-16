@@ -1,6 +1,8 @@
 <h1>Prescriptions#edit</h1>
 <p>Edit a Prescription</p>
 
+<%=flash[:error]%>
+
 <%= form_for @prescription do |f| %>
   <%= f.label :medication_id, 'Please select a medication' %> <br>
   <%= f.select :medication_id, options_from_collection_for_select(@medications, :id, :name, @prescription.medication_id) %> <br>
