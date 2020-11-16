@@ -1,0 +1,7 @@
+<h1>All Refills</h1>
+<p>Details about the refill </p>
+
+
+<%@refills.each do |refill|%>
+<%=refill.prescription.medication.name + "\t" %>  Dispensed Date:<%=refill.dispensed_date.strftime("%b %d, %Y")%> Expiration Date:<%=refill.expiration_date.strftime("%b %d, %Y")%> <br>
+<%end%>
