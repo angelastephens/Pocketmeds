@@ -1,7 +1,7 @@
 class CreatePrescriptions < ActiveRecord::Migration[6.0]
   def change
     create_table :prescriptions do |t|
-      t.string :dosage
+      t.string :dosage #user submitable attributes
       t.string :quantity
       t.integer :refill_amount
       t.integer :refill_count, default:0
