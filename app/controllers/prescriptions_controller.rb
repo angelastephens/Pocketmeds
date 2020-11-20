@@ -9,7 +9,7 @@ class PrescriptionsController < ApplicationController
   end
 
   def index
-    @prescription = current_user.prescriptions
+    @prescriptions = current_user.prescriptions.alphabetical
   end
 
   def create
