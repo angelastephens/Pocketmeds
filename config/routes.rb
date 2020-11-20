@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   
   resources :refills, only:[:create, :index] 
 
+  
 
   resources  :prescriptions do
     resources :refills
