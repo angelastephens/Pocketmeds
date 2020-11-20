@@ -1,6 +1,6 @@
 class RefillsController < ApplicationController
   before_action :auth_check
-  before_action :set_prescription, only:[ :new, :create]
+  before_action :set_prescription, only:[ :new, :create] #nested new 
   
   
   def new
@@ -8,9 +8,7 @@ class RefillsController < ApplicationController
   end
 
   def create
-    puts params
-    @refill = @prescription.refills.build(strong_params)
-    puts params 
+    @refill = @prescription.refills.build(strong_params) 
     if @refill.save
       redirect_to refills_path
     else
@@ -20,7 +18,7 @@ class RefillsController < ApplicationController
   end
 
   def index
-    if params[:prescription_id]
+    if params[:prescription_id] #will be nill if the controller is not in the nested route 
       set_prescription
       @refills = @prescription.refills
     else
